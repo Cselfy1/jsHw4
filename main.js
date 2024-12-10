@@ -73,3 +73,19 @@ function showSlides(n) {
   slides[slideIndex-1].style.display = "block";
   dots[slideIndex-1].className += " active";
 }
+
+// Task 3
+function toggleAccordion(header) {
+  const allContent = document.querySelectorAll('.accordion-content');
+  const content = header.nextElementSibling;
+
+  allContent.forEach((item) => {
+      if (item !== content) {
+          item.style.display = 'none';
+      }
+  });
+
+  content.style.display = content.style.display === 'block' ? 'none' : 'block';
+}
+
+// Task 4
