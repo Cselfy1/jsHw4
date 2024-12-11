@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>News page</title>
+</head>
+<body>
+    <h1>News</h1>
+    <p class="news1">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quis delectus itaque nemo eum aut, laudantium labore necessitatibus iste explicabo consectetur rerum fuga impedit ipsam exercitationem! Voluptatem voluptas odio facere doloribus.</p>
+    <a href="index.html"><h1>Go back</h1></a>
+    <div class="loader"></div>
+
+    <script>
+        window.addEventListener('load', () => {
+            const loader = document.querySelector('.loader');
+            loader.classList.add('loader-hidden');
+            loader.addEventListener('transitionend', () => {
+                loader.remove();
+            });
+        });
+    </script>
+</body>
+</html>
