@@ -20,6 +20,21 @@
                 loader.remove();
             });
         });
+        document.addEventListener('DOMContentLoaded', () => {
+    const loader = document.querySelector('.loader');
+    let isRefreshing = false;
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY === 0 && !isRefreshing) {
+            isRefreshing = true;
+            loader.classList.add('loader-visible');
+            setTimeout(() => {
+                loader.classList.remove('loader-visible');
+                isRefreshing = false;
+            }, 2000); 
+        }
+    });
+});
     </script>
 </body>
 </html>
