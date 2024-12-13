@@ -301,3 +301,59 @@ main {
     background-color: #007bff;
     color: white;
 }
+
+/* task 6 */
+a { 
+    text-decoration: none;
+    border-bottom: 1px dotted;
+    color: blue;
+}
+
+a:hover {
+    color: darkblue;
+}
+
+/* task 7 */
+#book-list li {
+    cursor: pointer;
+    padding: 5px;
+}
+
+#book-list li.selected {
+    color: orange;
+}
+
+/* task 8 */
+#text-container {
+    margin: 20px;
+}
+
+#text-display, #text-edit {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#text-edit {
+    display: none;
+    height: 100px;
+}
+
+
+/* task 9 */
+table {
+    width: 50%;
+    border-collapse: collapse;
+    margin: 20px auto;
+  }
+  th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+  th {
+    cursor: pointer;
+    background-color: #716565;
+  }

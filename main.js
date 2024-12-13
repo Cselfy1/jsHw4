@@ -130,7 +130,7 @@ dateInput.addEventListener('focus', () => {
   function generateCalendar(date) {
       const year = date.getFullYear();
       const month = date.getMonth();
-      const firstDay = (new Date(year, month, 1).getDay() + 6) % 7; // Adjust to make Monday the first day
+      const firstDay = (new Date(year, month, 1).getDay() + 6) % 7; 
       const lastDate = new Date(year, month + 1, 0).getDate();
 
       let calendarHTML = '<table>';
@@ -159,3 +159,108 @@ dateInput.addEventListener('focus', () => {
       });
   }
 });
+
+// Task 6
+document.addEventListener('DOMContentLoaded', () => {
+    const links = [
+        { text: 'index.html', href: 'index.html' },
+        { text: 'google.com', href: 'https://www.google.com' },
+        { text: 'itstep.org', href: 'https://itstep.org' },
+        { text: 'mystat.itstep.org', href: 'https://mystat.itstep.org' },
+        { text: '/images/css.png', href: '/images/css.png' },
+        { text: '/local/path', href: '/local/path' }
+    ];
+
+    const linkList = document.getElementById('link-list');
+
+    links.forEach(link => {
+        const listItem = document.createElement('li');
+        const anchor = document.createElement('a');
+        anchor.href = link.href;
+        anchor.textContent = link.text;
+        anchor.target = '_blank';
+        listItem.appendChild(anchor);
+        linkList.appendChild(listItem);
+    });
+});
+
+
+// Task 7
+document.addEventListener('DOMContentLoaded', () => {
+    const bookList = document.getElementById('book-list');
+    let lastSelectedIndex = null;
+
+    bookList.addEventListener('click', (event) => {
+        if (event.target.tagName !== 'LI') return;
+
+        const books = Array.from(bookList.children);
+        const index = books.indexOf(event.target);
+
+        if (event.ctrlKey) {
+            event.target.classList.toggle('selected');
+        } else if (event.shiftKey && lastSelectedIndex !== null) {
+            const start = Math.min(lastSelectedIndex, index);
+            const end = Math.max(lastSelectedIndex, index);
+            for (let i = start; i <= end; i++) {
+                books[i].classList.add('selected');
+            }
+        } else {
+            books.forEach(book => book.classList.remove('selected'));
+            event.target.classList.add('selected');
+        }
+
+        lastSelectedIndex = index;
+    });
+});
+
+
+// Task 8
+document.addEventListener('DOMContentLoaded', () => {
+    const textContainer = document.getElementById('text-container');
+    const textDisplay = document.getElementById('text-display');
+    let textEdit;
+
+    document.addEventListener('keydown', (event) => {
+        if (event.ctrlKey && event.key === 'e') {
+            event.preventDefault();
+            if (!textEdit) {
+                textEdit = document.createElement('textarea');
+                textEdit.id = 'text-edit';
+                textEdit.value = textDisplay.textContent;
+                textContainer.replaceChild(textEdit, textDisplay);
+                textEdit.style.display = 'block';
+                textEdit.focus();
+            }
+        }
+
+        if (event.ctrlKey && event.key === 's') {
+            event.preventDefault();
+            if (textEdit) {
+                textDisplay.textContent = textEdit.value;
+                textContainer.replaceChild(textDisplay, textEdit);
+                textEdit = null;
+            }
+        }
+    });
+});
+
+
+// Task 9
+function sortTable(columnIndex) {
+    const table = document.querySelector('table');
+    const rows = Array.from(table.rows).slice(1);
+    const isNumeric = columnIndex === 2;
+  
+    rows.sort((rowA, rowB) => {
+      const cellA = rowA.cells[columnIndex].textContent;
+      const cellB = rowB.cells[columnIndex].textContent;
+  
+      if (isNumeric) {
+        return parseInt(cellA) - parseInt(cellB);
+      } else {
+        return cellA.localeCompare(cellB);
+      }
+    });
+  
+    rows.forEach(row => table.appendChild(row));
+  }
